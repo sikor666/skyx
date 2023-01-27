@@ -234,7 +234,7 @@ namespace SkyX { namespace VClouds
 		{
 			if (k < mLightnings.size())
 			{
-				pos = mVClouds->getGeometryManager()->getSceneNode()->_getFullTransform().inverseAffine() * mSceneNodes.at(k)->_getDerivedPosition();
+				pos = mVClouds->getGeometryManager()->getSceneNode()->_getFullTransform().inverse() * mSceneNodes.at(k)->_getDerivedPosition();
 
 				mVolCloudsLightningMaterial->
 					getTechnique(0)->getPass(0)->getFragmentProgramParameters()->setNamedConstant("uLightning" + Ogre::StringConverter::toString(k), 

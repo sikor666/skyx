@@ -31,7 +31,7 @@ http://www.gnu.org/copyleft/lesser.txt.
 #include <Ogre.h>
 
 /// Define the dll export qualifier if compiling for Windows
-#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+#if (OGRE_PLATFORM == OGRE_PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WINRT) && !defined(__MINGW32__)
    #ifdef SKYX_LIB
      #define DllExport __declspec (dllexport)
    #else

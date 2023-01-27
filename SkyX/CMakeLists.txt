@@ -95,7 +95,8 @@ set_target_properties(SkyX PROPERTIES VERSION ${SKYX_VERSION} SOVERSION ${SKYX_V
 target_link_libraries(SkyX ${LIBRARIES})
 
 # Configure SkyX
-skyx_config_lib(SkyX)
+# skyx_config_lib(SkyX)
+target_include_directories(SkyX INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/Include)
 
 ###############################################################
 # install targets

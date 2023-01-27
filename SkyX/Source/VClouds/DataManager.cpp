@@ -599,7 +599,7 @@ namespace SkyX { namespace VClouds
 		buffer->lock(Ogre::HardwareBuffer::HBL_DISCARD);
 		const Ogre::PixelBox &pb = buffer->getCurrentLock();
 
-		Ogre::uint32 *pbptr = static_cast<Ogre::uint32*>(pb.data);
+		Ogre::uint32 *pbptr = reinterpret_cast<Ogre::uint32*>(pb.data);
 		size_t x, y, z;
 
 		for (z=pb.front; z<pb.back; z++) 
