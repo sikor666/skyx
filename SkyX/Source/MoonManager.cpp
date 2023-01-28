@@ -279,8 +279,6 @@ namespace SkyX
 		Ogre::Vector3 moonRelativePos = mSkyX->getController()->getMoonDirection()*
 			Ogre::Math::Cos(Ogre::Math::ASin((size/2)/radius))*radius;
 
-		mMoonSceneNode->setPosition(c->getDerivedPosition() + moonRelativePos);
-
 		if (moonRelativePos.y < -size/2)
 		{
 			mMoonSceneNode->setVisible(false);
@@ -290,7 +288,7 @@ namespace SkyX
 			mMoonSceneNode->setVisible(mSkyX->isVisible());
 
 			mMoonMaterial->getTechnique(0)->getPass(0)
-				->getVertexProgramParameters()->setNamedConstant("uSkydomeCenter", c->getDerivedPosition());
+				->getVertexProgramParameters()->setNamedConstant("uMoonRelativePos", moonRelativePos);
 		}
 
 		if (mMoonBillboard->getBoundingBox().getMaximum().x != size)

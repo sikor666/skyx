@@ -35,12 +35,12 @@ void main_vp(
 	// UNIFORM
 	uniform float4x4 uWorldViewProj,
 	uniform float4x4 uWorld,
-	uniform float3   uSkydomeCenter)
+	uniform float3   uMoonRelativePos)
 {
     // Clip space position
-	oPosition   = mul(uWorldViewProj, iPosition);
+	oPosition   = mul(uWorldViewProj, iPosition + float4(uMoonRelativePos, 0.0));
 	// World position
-	float3 ObjectSpacePosition = mul(uWorld, iPosition) - uSkydomeCenter;
+	float3 ObjectSpacePosition = mul(uWorld, iPosition + float4(uMoonRelativePos, 0.0));
 
     // UV
     oUVYLength.xy = iUV;

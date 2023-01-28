@@ -31,14 +31,14 @@ attribute vec2 uv0;    // iUV
 varying vec4 vUVYLength;
 // UNIFORM
 uniform mat4 uWorld;
-uniform vec3 uSkydomeCenter;
+uniform vec3 uMoonRelativePos;
 
 void main(void)
 {
 	// Clip space position
-    gl_Position = gl_ModelViewProjectionMatrix * vertex;
+    gl_Position = gl_ModelViewProjectionMatrix * (vertex + vec4(uMoonRelativePos, 0.0));
 	// World position
-    vec3 ObjectSpacePosition = (uWorld * vertex).xyz - uSkydomeCenter;
+    vec3 ObjectSpacePosition = (uWorld * (vertex + vec4(uMoonRelativePos, 0.0))).xyz;
 
     // UV
     vUVYLength.xy = uv0;

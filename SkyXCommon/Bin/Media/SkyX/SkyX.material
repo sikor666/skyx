@@ -796,7 +796,7 @@ material SkyX_Moon
 			vertex_program_ref SkyX_Moon_VP 
 			{
 			    param_named_auto uWorld world_matrix
-			    param_named uSkydomeCenter float3 0 0 0
+			    param_named uMoonRelativePos float3 0 0 0
 			}
 
 			fragment_program_ref SkyX_Moon_FP 
