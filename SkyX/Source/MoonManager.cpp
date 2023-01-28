@@ -30,7 +30,6 @@ namespace SkyX
 	MoonManager::MoonManager(SkyX *s)
 		: mSkyX(s)
 		, mMoonBillboard(0)
-		, mMoonSceneNode(0)
 		, mCreated(false)
 		, mMoonSize(0.225f)
 		, mMoonHaloIntensity(0.4f)
@@ -59,8 +58,6 @@ namespace SkyX
 			return;
 		}
 
-		mMoonSceneNode = mSkyX->getSceneManager()->getRootSceneNode()->createChildSceneNode();
-
 		mMoonBillboard = mSkyX->getSceneManager()->createBillboardSet("SkyXMoonBillboardSet", 1);
         mMoonBillboard->setMaterialName(mSkyX->getGPUManager()->getMoonMaterialName());
 		mMoonBillboard->setBillboardType(Ogre::BBT_ORIENTED_COMMON);
@@ -69,7 +66,7 @@ namespace SkyX
 
 		mMoonBillboard->createBillboard(Ogre::Vector3(0,0,0));
 
-		mMoonSceneNode->attachObject(mMoonBillboard);
+		mSkyX->getMeshManager()->getSceneNode()->attachObject(mMoonBillboard);
 
 		mCreated = true;
 	}
@@ -80,10 +77,6 @@ namespace SkyX
 		{
 			return;
 		}
-
-		mMoonSceneNode->detachAllObjects();
-		mMoonSceneNode->getParentSceneNode()->removeAndDestroyChild(mMoonSceneNode->getName());
-		mMoonSceneNode = 0;
 
 		mSkyX->getSceneManager()->destroyBillboardSet(mMoonBillboard);
 		mMoonBillboard = 0;
@@ -279,17 +272,8 @@ namespace SkyX
 		Ogre::Vector3 moonRelativePos = mSkyX->getController()->getMoonDirection()*
 			Ogre::Math::Cos(Ogre::Math::ASin((size/2)/radius))*radius;
 
-		if (moonRelativePos.y < -size/2)
-		{
-			mMoonSceneNode->setVisible(false);
-		}
-		else
-		{
-			mMoonSceneNode->setVisible(mSkyX->isVisible());
-
-			mMoonMaterial->getTechnique(0)->getPass(0)
-				->getVertexProgramParameters()->setNamedConstant("uMoonRelativePos", moonRelativePos);
-		}
+		mMoonMaterial->getTechnique(0)->getPass(0)
+			->getVertexProgramParameters()->setNamedConstant("uMoonRelativePos", moonRelativePos);
 
 		if (mMoonBillboard->getBoundingBox().getMaximum().x != size)
 		{
@@ -305,6 +289,5 @@ namespace SkyX
 		mMoonBillboard->setDefaultDimensions(size, size);
 		mMoonBillboard->setBounds(Ogre::AxisAlignedBox(-size/2, -size/2, -size/2,
 														size/2,  size/2,  size/2), 1);
-		mMoonSceneNode->_updateBounds();
 	}
 }

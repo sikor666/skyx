@@ -186,7 +186,6 @@ namespace SkyX
 		}
 
 		mMeshManager->getSceneNode()->setVisible(mVisible);
-		mMoonManager->getMoonSceneNode()->setVisible(mVisible);
 
 		if (mVCloudsManager->isCreated())
 		{

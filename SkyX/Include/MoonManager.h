@@ -68,14 +68,6 @@ namespace SkyX
 			return mMoonBillboard;
 		}
 
-		/** Get moon scene node
-		    @return Moon scene node
-		 */
-		inline Ogre::SceneNode* getMoonSceneNode()
-		{
-			return mMoonSceneNode;
-		}
-
 		/** Set moon size
 		    @param MoonSize Moon size
 		 */
@@ -140,8 +132,6 @@ namespace SkyX
 
 		/// Moon billboard
 		Ogre::BillboardSet* mMoonBillboard;
-		/// Moon scene node
-		Ogre::SceneNode* mMoonSceneNode;
 
 		/// Is moon manager created?
 		bool mCreated;
