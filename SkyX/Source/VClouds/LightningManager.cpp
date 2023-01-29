@@ -184,7 +184,7 @@ namespace SkyX { namespace VClouds
 				{
 					if ((*it2) == sn)
 					{
-						sn->getParentSceneNode()->removeAndDestroyChild(sn->getName());
+						sn->getParentSceneNode()->removeAndDestroyChild(sn);
 						mSceneNodes.erase(it2);
 						break;
 					}
