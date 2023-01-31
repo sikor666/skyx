@@ -44,7 +44,7 @@ namespace SkyX
 		, mUnderHorizonFadingExponent(0.75)
 		, mUnderHorizonFadingMultiplier(2)
 		, mRadiusMultiplier(0.95f)
-        , mMaterialName("_NULL_")
+        , mMaterialName("BaseWhiteNoLighting")
 	{
 	}
 
@@ -72,7 +72,7 @@ namespace SkyX
 		mEntity = 0;
 		mVertexBuffer.setNull();
 		mIndexBuffer.setNull();
-		mMaterialName = "_NULL_";
+		mMaterialName = "BaseWhiteNoLighting";
 
 		delete [] mVertices;
 
